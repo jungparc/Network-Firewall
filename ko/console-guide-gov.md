@@ -59,7 +59,7 @@ Network Firewall 생성에 필요한 최소 네트워크 서비스 자원은 아
 1. **Security > Network Firewall**로 이동합니다.
 2. 각 필수 항목을 모두 선택하고 하단의 **Network Firewall 생성**을 클릭합니다.
     * RBAC: 인스턴스 객체 조회, Network Firewall 서비스 제공에 필요한 API 권한을 부여
-    * 생성 구분: 단일 구성과 이중화 구성을 선택합니다.
+    * 구성 방식: 단일 구성과 이중화 구성을 선택합니다.
     * VPC: Network Firewall에서 사용할 VPC
     * 서브넷: Network Firewall에서 내부 트래픽 제어를 위해 사용할 서브넷
     * NAT: Network Firewall에서 외부 트래픽 제어를 위해 사용할 서브넷
@@ -77,7 +77,7 @@ Network Firewall 생성에 필요한 최소 네트워크 서비스 자원은 아
 >* Security Groups와는 별개의 서비스이므로 Network Firewall을 사용하면 두 서비스를 모두 허용해야 인스턴스에 접근할 수 있습니다.
 >* Network Firewall이 소유하고 있는 CIDR 대역과 연결이 필요한 CIDR 대역은 중복되지 않아야 합니다.
 >* **Network > Network Interface**에서 Virtual_IP 타입으로 생성되어 있는 IP는 Network Firewall에서 이중화 용도로 사용 중이므로 삭제할 경우 통신이 차단될 수 있습니다.
->* 단일 또는 이중화 구성을 선택하여 Network Firewall을 생성한 뒤 변경이 필요할 경우 **옵션** 탭에서 구성을 변경할 수 있습니다.
+>* 단일 또는 이중화 구성을 선택하여 Network Firewall을 생성한 뒤 변경이 필요할 경우 **옵션** 탭에서 구성을 변경할 수 있습니다. 하지만 가용성 영역은 변경이 불가능하므로 이중화 구성의 경우 가급적 가용성 영역을 분리하여 구성하세요.
 
 ### 연결 설정
 > [예시]
@@ -172,22 +172,23 @@ Network Firewall 생성과 연결 설정을 완료하면 Network Firewall의 여
 <br>
 
 
-## 정책
-Network Firewall을 생성하면 정책 초기 페이지로 이동합니다.
+## 정책 (초기 페이지)
+Network Firewall을 생성하면 정책 탭으로 이동합니다.
 
-**정책** 탭에서는 Network Firewall과 연결된 VPC 간 트래픽과 인바운드/아웃바운드 트래픽을 제어할 수 있는 정책을 관리할 수 있습니다.
+**정책** 탭에서는 Network Firewall과 연결된 VPC 간 트래픽과 인바운드/아웃바운드 트래픽을 제어할 수 있는 **ACL**과 트래픽의 경로를 지정할 수 있는 **라우트**를 설정할 수 있습니다.
 
 ### 메인 페이지
-
-* default-deny는 필수 정책이며, 수정하거나 삭제할 수 없습니다.
 
 ![main_page.PNG](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/23.09.07/main_page_1.png)
 
 > [참고]
+>
+> * default-deny는 필수 정책이며, 수정하거나 삭제할 수 없습니다.
 > default-deny 정책을 통해 차단된 로그는 **옵션** 탭의 **기본 차단 정책 로그 설정**을 **사용**으로 변경한 후 **로그** 탭에서 확인 가능합니다.
 
+## ACL
 
-### 정책 추가
+### 추가
 
 * 출발지, 목적지, 목적지 포트를 기반으로 정책을 추가할 수 있습니다.
     * 이미 만들어진 객체를 통해 출발지, 목적지, 목적지 포트를 선택합니다.
@@ -196,7 +197,7 @@ Network Firewall을 생성하면 정책 초기 페이지로 이동합니다.
 
 ![acl_add.PNG](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/24.05.27/acl_add.png)
 
-### 정책 복사
+### 복사
 
 * **복사**를 클릭해 정책을 복사할 수 있습니다.
     * 복사된 정책은 비활성화됩니다.
@@ -204,12 +205,12 @@ Network Firewall을 생성하면 정책 초기 페이지로 이동합니다.
 ![acl_copy.PNG](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/23.09.07/acl_copy_1.png)
 
 
-### 정책 수정
+### 수정
 
 * **수정**을 클릭해 정책을 수정할 수 있습니다.
 
 
-### 정책 이동
+### 이동
 
 * **이동**을 클릭해 정책을 이동할 수 있습니다.
     * default-deny 정책 아래로는 이동이 불가능합니다.
@@ -233,21 +234,51 @@ Network Firewall을 생성하면 정책 초기 페이지로 이동합니다.
 
 ![acl_batch.PNG](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/23.09.07/acl_batch_1.png)
 
+## 라우트
+사진 추가
+
+> [참고]
+> 
+> * Network Firewall의 기본 게이트웨이는 NAT 이더넷이며, 수정이나 삭제할 수 없습니다.
+> * 라우트 설정이 변경될 경우 통신에 문제가 있을수 있으므로 유의하여 설정하세요.  
+
+### 추가
+
+* **추가**를 클릭해 이더넷을 선택하고, 목적지와 게이트웨이를 입력합니다. 
+    * 목적지: 서브넷 형식으로 입력
+    * 이더넷: NAT, TRAFFIC, VPN(IPSec VPN 기능 사용시) 중 선택
+    * 게이트웨이: 호스트 형식으로 입력
+
+> [참고]
+> 
+> * 이더넷을 VPN으로 선택할 경우 게이트웨이는 지정하지 않아도 됩니다.
+> * IPSec VPN과 연동된 사설 IP 대역에 대한 라우트 설정은 반드시 이더넷을 VPN으로 설정하세요.
+
+
+### 수정
+
+* **수정**을 클릭해 라우트를 수정할 수 있습니다.
+
+### 삭제
+
+* **삭제**를 클릭해 라우트를 삭제할 수 있습니다.
+
+***
 
 ## 객체
 
-**객체** 탭에서는 정책을 생성할 때 사용할 IP와 포트를 생성하고 관리합니다.
+**객체** 탭에서는 정책을 생성할 때 사용할 IP, 포트, 도메인을 생성하고 관리합니다.
 
 ### 추가
 
 * 필수 항목을 입력하여 객체를 생성합니다.
-IP와 포트는 아래의 타입과 프로토콜을 추가할 수 있습니다.
+    * 객체는 IP, 포트, 도메인의 3가지 형태로 추가할 수 있습니다.
 
-    * IP
-        * 타입: 서브넷, 범위, 그룹
-    * 포트
-        * 타입: 포트, 범위, 그룹
-        * 프로토콜: TCP, UDP, ICMP
+> [참고]
+> 
+> * 그룹 객체 생성시 그룹 객체는 추가할 수 없습니다. (단일이나 범위 객체만 선택하여 추가 가능)
+> * 도메인 객체는 아래와 같이 활용할 수 있습니다.
+>   * 목적지 도메인의 IP 주소가 여러개일 때 자동으로 IP를 수집하여 허용 또는 차단(수집 주기: 5분)
 
 ### 수정
 * **수정**을 클릭해 객체를 수정할 수 있습니다.
@@ -467,12 +498,17 @@ IP와 포트는 아래의 타입과 프로토콜을 추가할 수 있습니다.
 > [참고] 
 > 트래픽, NAT 이더넷의 기본 MTU 크기는 1450Byte입니다.
 
-* SSL VPN 설정: 외부에서 NHN Cloud(공공기관용) 인스턴스 접속이 필요할 경우 사용하는 SSL VPN 서비스와 Network Firewall을 연동하는 옵션을 제공합니다.
+* 연동 설정: NHN Cloud(공공기관용) 에서 제공하는 SSL VPN, 백신, 백업 서비스를 Network Firewall과 연동하는 옵션을 제공합니다.
+    * 사용 시 **정책** 탭에서 ACL 허용과 라우트 설정이 필요하며, 설정에 필요한 IP와 포트 정보는 각 서비스 별 콘솔 사용 가이드를 참조하세요.
+        * [SSL VPN](https://docs.gov-nhncloud.com/ko/Security/SSL%20VPN/ko/console-guide/)
+        * [백신](https://docs.gov-nhncloud.com/ko/Security/Vaccine/ko/console-guide-gov/)
+        * [백업](https://docs.gov-nhncloud.com/ko/Storage/Backup/ko/console-guide-gov/)
 
-> [참고]
+> [참고 사항]
 > 
-> * 해당 옵션을 사용할 경우 NHN Cloud(공공기관용)에서 인스턴스 접속 시 사용하는 Private Network의 사설 VPN Network IP를 Network Firewall의 NAT 탭에서 설정할 수 있습니다.
-> 옵션 사용 시 SSL VPN 연결 후 인스턴스에 접근할 때 Network Firewall을 통해 접근하게 되며 정책에서 통신을 허용해야만 인스턴스 접근이 가능합니다.
+>   * SSL VPN 옵션을 사용할 경우 NHN Cloud(공공기관용)에서 인스턴스 접속 시 사용하는 SSL VPN 전용 Floating IP를 Network Firewall의 **NAT** 탭에서 설정하여 인스턴스에 접속할 수 있습니다. (전용 Floating IP를 인스턴스에 직접 할당하지 않음)
+> * 백신, 백업
+>   * 
 
 * Network Firewall 구성: 단일 또는 이중화로 Network Firewall의 구성 방식을 설정할 수 있습니다.
 
