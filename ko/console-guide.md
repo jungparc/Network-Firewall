@@ -13,6 +13,7 @@ Network Firewall을 사용하기 위해서는 가장 먼저 Network Firewall 서
 Network Firewall 생성에 필요한 최소 네트워크 서비스 자원은 아래와 같습니다.
 
 > [참고]
+> 
 > **Network Firewall > 개요**에서 Network Firewall 서비스 구성도를 참조하세요.
 
 
@@ -20,7 +21,8 @@ Network Firewall 생성에 필요한 최소 네트워크 서비스 자원은 아
 
 * 1개의 프로젝트
 * 2개의 VPC(Hub VPC, Spoke VPC)
-* Hub VPC 내 3개의 서브넷(Network Firewall 서브넷, NAT 서브넷, 외부 전송 서브넷)
+* Hub VPC 내 3개의 서브넷
+    * 트래픽(내부) 서브넷, NAT(외부) 서브넷, 외부 전송 서브넷
 * Spoke VPC 내 최소 1개의 서브넷
 * Hub VPC의 Routing에 연결된 인터넷 게이트웨이
 
@@ -28,7 +30,8 @@ Network Firewall 생성에 필요한 최소 네트워크 서비스 자원은 아
 
 * 1개의 프로젝트
 * 3개의 VPC(Hub VPC, Spoke1 VPC, Spoke2 VPC)
-* Hub VPC 내 3개의 서브넷(Network Firewall 서브넷, NAT 서브넷, 외부 전송 서브넷)
+* Hub VPC 내 3개의 서브넷
+    * 트래픽(내부) 서브넷, NAT(외부) 서브넷, 외부 전송 서브넷
 * Spoke1 VPC, Spoke2 VPC 내 각각 최소 1개의 서브넷
 * Hub VPC의 Routing에 연결된 인터넷 게이트웨이
 
@@ -36,7 +39,8 @@ Network Firewall 생성에 필요한 최소 네트워크 서비스 자원은 아
 
 * 2개의 프로젝트
 * 2개의 VPC(각각 프로젝트에 Hub VPC, Spoke VPC)
-* Hub VPC 내 3개의 서브넷(Network Firewall 서브넷, NAT 서브넷, 외부 전송 서브넷)
+* Hub VPC 내 3개의 서브넷
+    * 트래픽(내부) 서브넷, NAT(외부) 서브넷, 외부 전송 서브넷
 * Spoke VPC 내 최소 1개의 서브넷
 * Hub VPC의 Routing에 연결된 인터넷 게이트웨이
 
@@ -45,7 +49,8 @@ Network Firewall 생성에 필요한 최소 네트워크 서비스 자원은 아
 
 * 1개의 프로젝트
 * 2개의 VPC(KR1 리전에 Hub VPC, KR2 리전에 Spoke VPC)
-* Hub VPC 내 3개의 서브넷(Network Firewall 서브넷, NAT 서브넷, 외부 전송 서브넷)
+* Hub VPC 내 3개의 서브넷
+    * 트래픽(내부) 서브넷, NAT(외부) 서브넷, 외부 전송 서브넷
 * Spoke VPC 내 최소 1개의 서브넷
 * Hub VPC의 Routing에 연결된 인터넷 게이트웨이
 
@@ -54,14 +59,15 @@ Network Firewall 생성에 필요한 최소 네트워크 서비스 자원은 아
 
 * 1개의 프로젝트
 * 1개의 VPC
-* 3개의 Hub 서브넷(Network Firewall 서브넷, NAT 서브넷, 외부 전송 서브넷)
+* 3개의 Hub 서브넷
+    * 트래픽(내부) 서브넷, NAT(외부) 서브넷, 외부 전송 서브넷
 * 최소 1개의 Spoke 서브넷
 * VPC의 Routing에 연결된 인터넷 게이트웨이
 
 
 > [참고]
->* 위의 서비스 자원은 [Network] 카테고리에서 생성 가능합니다.
 > 
+>* 위의 서비스 자원은 [Network] 카테고리에서 생성 가능합니다. 
 >* Network Firewall 생성은 프로젝트당 1개씩만 생성 가능합니다.
 
 ### Network Firewall 생성
@@ -90,6 +96,7 @@ Network Firewall 생성에 필요한 최소 네트워크 서비스 자원은 아
 
 ### 연결 설정
 > [예시]
+> 
 > Network Firewall이 사용하는 VPC(Hub)는 10.0.0.0/24이고, Network Firewall과 연결이 필요한 VPC(Spoke)는 172.16.0.0/24일 때
 
 1. <strong>Network > Routing</strong>으로 이동하여 Spoke VPC를 선택한 후 라우팅 테이블을 변경합니다.
@@ -139,6 +146,7 @@ Network Firewall 생성에 필요한 최소 네트워크 서비스 자원은 아
 **만약 Spoke VPC의 서브넷이 2개 이상이고, Network Firewall을 통해 서브넷 간 트래픽 제어가 필요한 경우** 아래의 라우팅을 추가합니다.
 
 > [예시]
+> 
 > Spoke VPC(172.16.0.0/24)의 서브넷이 172.16.0.0/25와 172.16.0.128/25일 때
 
 * <strong>Network > Routing</strong>으로 이동하여 Spoke VPC를 선택한 후 아래의 라우팅 2개를 추가합니다.
@@ -156,6 +164,7 @@ Network Firewall 생성에 필요한 최소 네트워크 서비스 자원은 아
 **만약 Spoke VPC가 2개 이상**이라면 아래의 라우팅을 추가합니다.
 
 > [예시]
+> 
 > Spoke VPC1(172.16.0.0/24)과 Spoke VPC2(192.168.0.0/24)일 때
 
 * <strong>Network > Routing</strong>으로 이동하여 Hub VPC를 선택한 후 아래의 라우팅 2개를 추가합니다.
@@ -169,6 +178,7 @@ Network Firewall 생성에 필요한 최소 네트워크 서비스 자원은 아
 
 
 > [참고]
+> 
 > **연결 설정**의 **5**와 같이 Spoke VPC2-Hub 간 VPC 피어링에도 라우트 추가 설정이 필요합니다.
 
 위의 라우팅 설정이 완료되면 서로 다른 Spoke VPC 간 Network Firewall을 경유하여 사설 통신을 할 수 있습니다. (<strong>Network Firewall > 정책</strong> 탭에서 정책 추가 필요)
@@ -188,6 +198,7 @@ Network Firewall을 생성하면 **정책** 탭으로 이동합니다.
 ![main_page.PNG](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/23.09.07/main_page_1.png)
 
 > [참고]
+> 
 > * default-deny는 필수 정책이며, 수정하거나 삭제할 수 없습니다.
 > * default-deny 정책을 통해 차단된 로그는 **옵션** 탭의 **기본 차단 정책 로그 설정**을 **사용**으로 변경한 후 **로그** 탭에서 확인 가능합니다.
 
@@ -227,6 +238,7 @@ Network Firewall을 생성하면 **정책** 탭으로 이동합니다.
 * **삭제**를 클릭해 정책을 삭제할 수 있습니다.
 
 >[주의]
+> 
 >한번 삭제한 정책은 복구할 수 없으며, default-deny 정책은 삭제할 수 없습니다.
 
 ### 정책 일괄 다운로드
@@ -297,6 +309,7 @@ Network Firewall을 생성하면 **정책** 탭으로 이동합니다.
     * 자동으로 Network Firewall에서 생성한 객체는 수정이나 삭제할 수 없습니다.
 
 >[주의]
+> 
 >정책에서 사용 중인 객체는 삭제 후 ALL 객체로 변경됩니다.
 
 ### 인스턴스 객체 추가
@@ -393,7 +406,7 @@ Network Firewall을 생성하면 **정책** 탭으로 이동합니다.
 * Phase 1/2 설정
     * IPSec VPN 터널을 생성하기 위해 필요한 설정 정보를 입력합니다.
 
- > [설정 시 주의 사항]
+ > [설정 시 참고 사항]
  >
  > * 모든 설정은 피어 VPN 장비와 동일하게 설정합니다.
  > * 로컬 ID는 피어 VPN 장비의 설정 방식에 따라 선택적으로 설정합니다.
@@ -407,8 +420,7 @@ Network Firewall을 생성하면 **정책** 탭으로 이동합니다.
   > * 아래의 CIDR은 로컬 프라이빗 IP와 피어 프라이빗 IP에 추가할 수 없으며, 추가할 경우 Network Firewall을 경유하는 통신에 문제가 있을 수 있습니다.
  >   * 10.0.0.0/8
  >   * 172.16.0.0/12
- >   * 192.168.0.0/16
-
+ >   * 192.168.0.0/16 
 
 ### 터널 연결
 
@@ -421,6 +433,7 @@ Network Firewall을 생성하면 **정책** 탭으로 이동합니다.
  >   * 빨간색: 설정값 또는 통신 상태 등의 문제로 피어 VPN 장비 간 연결이 실패된 상태
  >   * 회색: 연결 대기 상태(새로 생성된 터널)
  >   * 주황색: **중지** 버튼을 클릭해 피어 VPN 장비간 연결이 중지된 상태
+> * 터널 생성이 완료된 이후 피어 장비의 종류와 설정에 따라 연결 버튼을 클릭하지 않아도 연결될 수 있습니다.
 
 ### 터널 수정
 
@@ -495,7 +508,8 @@ Network Firewall을 생성하면 **정책** 탭으로 이동합니다.
     * 트래픽: NHN Cloud 내부 통신에 사용하는 이더넷(피어링 통신 포함)
     * NAT: 외부 통신에 사용하는 이더넷
 
-> [참고] 
+> [참고]
+> 
 > 트래픽, NAT 이더넷의 기본 MTU 크기는 1450Byte입니다.
 
 * Network Firewall 구성: 단일 또는 이중화로 Network Firewall의 구성 방식을 설정할 수 있습니다.
