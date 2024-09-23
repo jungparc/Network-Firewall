@@ -190,7 +190,7 @@ Network Firewall 서비스 구성도를 참고하여 고객의 환경에 맞게 
 ## 인스턴스 접속
 Network Firewall을 생성하고 연결 설정을 모두 완료한 후 Network Firewall을 경유하여 인스턴스에 접속할 수 있습니다.
 
-예를 들어, 1개의 프로젝트 내 2개의 Spoke VPC로 3개의 서브넷을 구성하고, 외부에서 웹방화벽 접속이 필요할 경우 아래와 같이 NAT, ACL, 보안그룹을 설정합니다.
+예를 들어, 1개의 프로젝트 내 2개의 Spoke VPC로 3개의 서브넷을 구성하고, 외부에서 웹방화벽 접속이 필요할 경우 아래와 같이 NAT, ACL을 설정합니다.
 
 <img src="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/24.09.12/instance-access
 .png" height="65%" />
@@ -201,7 +201,10 @@ Network Firewall을 생성하고 연결 설정을 모두 완료한 후 Network F
 > * **추가** 버튼 클릭 후 NAT 설정
 >   * 설정 전 **객체** 탭에서 목적지 IP 객체 생성과 여분의 플로팅 IP 필요 
 > <img src="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/24.09.12/nat-add.png" height="65%" />
-> * **Network Firewall > 정책 > ACL** 탭에서 필요한 ACL을 추가하여 허용하고, 웹방화벽의 보안그룹을 허용
+> * **Network Firewall > 정책 > ACL** 탭에서 필요한 ACL을 허용
+> <img src="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/24.09.12/access_acl.png" height="65%" />  
+
+위와 같이 설정 후 출발지 IP를 보안 그룹에서 허용하면 인스턴스에 접속 가능합니다.
 
 ***
 

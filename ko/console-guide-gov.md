@@ -178,7 +178,7 @@ Network Firewall 서비스 구성도를 참고하여 고객의 환경에 맞게 
 ## 인스턴스 접속
 Network Firewall을 생성하고 연결 설정을 모두 완료한 후 Network Firewall을 경유하여 인스턴스에 접속할 수 있습니다.
 
-예를 들어, 1개의 프로젝트 내 2개의 Spoke VPC로 3개의 서브넷을 구성하고, 외부에서 웹방화벽 접속이 필요할 경우 아래와 같이 NAT, ACL, 보안그룹을 설정합니다.
+예를 들어, 1개의 프로젝트 내 2개의 Spoke VPC로 3개의 서브넷을 구성하고, 외부에서 웹방화벽 접속이 필요할 경우 아래와 같이 NAT, ACL을 설정합니다.
 
 <img src="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/24.09.12/instance-access.png" height="65%" />
 
@@ -188,7 +188,10 @@ Network Firewall을 생성하고 연결 설정을 모두 완료한 후 Network F
 > * **추가** 버튼 클릭 후 NAT 설정
 >   * 설정 전 **객체** 탭에서 목적지 IP 객체 생성과 여분의 플로팅 IP 필요 
 > <img src="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/24.09.12/nat-add.png" height="65%" />
-> * **Network Firewall > 정책 > ACL** 탭에서 필요한 ACL을 추가하여 허용하고, 웹방화벽의 보안그룹을 허용
+> * **Network Firewall > 정책 > ACL** 탭에서 필요한 ACL을 허용
+> <img src="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/24.09.12/access_acl.png" height="65%" />  
+
+위와 같이 설정 후 출발지 IP를 보안 그룹에서 허용하면 인스턴스에 접속 가능합니다.
 
 ***
 
@@ -528,7 +531,7 @@ Network Firewall을 생성하면 정책 탭으로 이동합니다.
 
 > [참고]
 > 
->   * SSL VPN 서비스를 연동하여 사용할 경우 NHN Cloud(공공기관용)에서 인스턴스 접속 시 사용하는 SSL VPN 전용 Floating IP를 Network Firewall의 **NAT** 탭에서 설정하여 인스턴스에 접속할 수 있습니다. (VPN 전용 Floating IP를 인스턴스에 직접 할당하지 않음)
+> * SSL VPN 서비스를 연동하여 사용할 경우 NHN Cloud(공공기관용)에서 인스턴스 접속 시 사용하는 전용 Floating IP를 콘솔에서 생성 해야 하며, Network Firewall의 **NAT** 탭에서 해당 Floating IP를 설정한 후 인스턴스에 접속할 수 있습니다. (전용 Floating IP를 인스턴스에 직접 할당하지 않음)
 
 
 * Network Firewall 구성: 단일 또는 이중화로 Network Firewall의 구성 방식을 설정할 수 있습니다.
