@@ -38,6 +38,15 @@ NHN Cloud에 특화된 접근 제어를 적용할 수 있고, 별도의 방화�
 ### 1개의 VPC 내 여러 개의 서브넷
 <img src="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/24.09.12/Architecture5.png" height="50%" />
 
+### 테스트
+<img src="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/24.09.12/test.png" height="50%" width="100%" />
+
+### 테스트2
+<img src="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/24.09.12/test2.png" height="50%" width="100%" />
+
+### 테스트3
+<img src="https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_nfw/24.09.12/test2.png" height="50%" />
+
 
 > [참고]
 > 
