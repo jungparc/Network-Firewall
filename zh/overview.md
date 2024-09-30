@@ -1,5 +1,8 @@
 ## Security > Network Firewall > Overview
 
+This is only for test.
+This is only for test.
+
 Network Firewall is a network security service to safely protect infrastructure assets used by NHN Cloud. 
 You can easily use access control specialized for NHN Cloud and the firewall feature without using a separate firewall product.
 
